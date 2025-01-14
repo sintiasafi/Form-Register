@@ -1,0 +1,96 @@
+// pages/register.js
+"use client";
+import React, { useState } from 'react';
+
+const Register = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    username: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match!');
+      return;
+    }
+    console.log('Form Submitted', formData);
+  };
+
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', padding: '1rem', background: 'linear-gradient(to right, #a1c4fd, #c2e9fb)' }}>
+      <div style={{ background: 'white', padding: '2rem', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', maxWidth: '400px', width: '100%' }}>
+        <h2 style={{ marginBottom: '1rem', textAlign: 'center', fontSize: '1.5rem' }}>Create Account!</h2>
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: '1rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem' }}>Email</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              style={{ width: '100%', padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc', fontSize: '1rem' }}
+            />
+          </div>
+          <div style={{ marginBottom: '1rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem' }}>Username</label>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+              style={{ width: '100%', padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc', fontSize: '1rem' }}
+            />
+          </div>
+          <div style={{ marginBottom: '1rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem' }}>Password</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              style={{ width: '100%', padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc', fontSize: '1rem' }}
+            />
+          </div>
+          <div style={{ marginBottom: '1rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem' }}>Confirm Password</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+              style={{ width: '100%', padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc', fontSize: '1rem' }}
+            />
+          </div>
+          <div style={{ marginBottom: '1rem', fontSize: '0.8rem', textAlign: 'center' }}>
+            <input type="checkbox" required style={{ marginRight: '0.5rem' }} /> By registering, you agree to our{' '}
+            <a href="/terms" style={{ color: '#007BFF', textDecoration: 'none' }}>Terms of Use</a> and{' '}
+            <a href="/privacy" style={{ color: '#007BFF', textDecoration: 'none' }}>Privacy Policy</a>.
+          </div>
+          <button
+            type="submit"
+            style={{ width: '100%', padding: '0.75rem', backgroundColor: '#007BFF', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '1rem' }}
+          >
+            Register
+          </button>
+        </form>
+        <p style={{ marginTop: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
+          Already have an account? <a href="/login" style={{ color: '#007BFF', textDecoration: 'none' }}>Log in</a>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Register;
